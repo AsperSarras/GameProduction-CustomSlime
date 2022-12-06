@@ -15,7 +15,7 @@ public class Enemy : MonoBehaviour
     public LayerMask whatIsPlayer;
 
     [Header("Patrol")]
-    public GameObject walkPointPosition;
+    //public GameObject walkPointPosition;
     public Vector3 walkPoint;
 
     [Header("Attack")]
@@ -35,10 +35,18 @@ public class Enemy : MonoBehaviour
     public int scoreWorth;
     public int CurrentHp;
     public int TotalHp;
-    public float Def;
+    public int Atk;
+    public int Def;
     public TypeEnmu type;
     public TypeEnmu weak;
     public TypeEnmu res;
+
+    [Header("ObjectInfo")]
+    public DungeonUiScript DungeonData;
+    public GameObject projectileSpawnPoint;
+    public Slider HpBar;
+    public TMP_Text totalHp;
+    public TMP_Text currentHp;
 
     [Header("BossRelated")]
     public bool isBoss = false;
@@ -50,15 +58,7 @@ public class Enemy : MonoBehaviour
     public GameObject projectile3;
     public bool firstEncounter = false;
 
-
-    [Header("Others")]
     private ProjectileScript ps;
-    public DungeonUiScript DungeonData;
-    public GameObject projectileSpawnPoint;
-    public Slider HpBar;
-    public TMP_Text totalHp;
-    public TMP_Text currentHp;
-
 
     private void Awake()
     {
@@ -69,7 +69,9 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        walkPoint = walkPointPosition.transform.position;
+        //walkPoint = walkPointPosition.transform.position;
+
+        StatsScalling();
 
         CurrentHp = TotalHp;
 
@@ -164,16 +166,7 @@ public class Enemy : MonoBehaviour
             else
             {
                 Shoot(projectile);
-                //Instantiate(projectile, projectileSpawnPoint.transform.position, projectileSpawnPoint.transform.rotation);
-
             }
-
-            
-
-            //EnemyBulletScript bulletData = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<EnemyBulletScript>();
-            //bulletData.enemy = this.gameObject;
-            //_rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
-            //_rb.AddForce(transform.up * 8f, ForceMode.Impulse);
 
             onCd = true;
 
@@ -184,6 +177,7 @@ public class Enemy : MonoBehaviour
     void Shoot(GameObject proj)
     {
         GameObject projec = Instantiate(proj, projectileSpawnPoint.transform.position, projectileSpawnPoint.transform.rotation);
+        projec.GetComponent<EnemyBulletScript>().dmg = Atk;
         projec.GetComponent<EnemyBulletScript>().destination = player.transform.position;
         projec.GetComponent<EnemyBulletScript>().enemy = this.gameObject;
     }
@@ -201,6 +195,22 @@ public class Enemy : MonoBehaviour
     private void ResetAttack3()
     {
         onCd3 = false;
+    }
+
+    public void StatsScalling()
+    {
+        float expWorthf = expWorth * ScoreSingleton.Instance.DungeonScaling;
+        expWorth = (int)expWorthf;
+        float scoreWorthf = scoreWorth * ScoreSingleton.Instance.DungeonScaling;
+        scoreWorth = (int)scoreWorthf;
+        float TotalHpf = TotalHp * ScoreSingleton.Instance.DungeonScaling;
+        TotalHp = (int)TotalHpf;
+        float Atkf = Atk * ScoreSingleton.Instance.DungeonScaling;
+        Atk = (int)Atkf;
+        float Deff = Def * ScoreSingleton.Instance.DungeonScaling;
+        Def = (int)Deff;
+
+
     }
 
     private void OnDrawGizmosSelected()
@@ -241,17 +251,6 @@ public class Enemy : MonoBehaviour
                 }
                 Destroy(gameObject);
             }
-
-            //if(dumy == false)
-            //{
-            //    CurrentHp -= dmgTaken;
-            //    if(CurrentHp <= 0)
-            //    {
-            //        DungeonData.enemyKilled++;
-            //        GameSingleton.Instance.ExpGain(monsExpRelated, expWorth);
-            //        Destroy(gameObject);
-            //    }
-            //}
 
             Destroy(collision.gameObject);
 

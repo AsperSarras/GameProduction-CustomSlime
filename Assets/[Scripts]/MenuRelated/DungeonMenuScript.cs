@@ -37,7 +37,7 @@ public class DungeonMenuScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -55,13 +55,13 @@ public class DungeonMenuScript : MonoBehaviour
 
     public void UpdateTexts(int Dungeon)
     {
-        activeDungeon = Dungeon + 1;
+        activeDungeon = Dungeon;
         switch (Dungeon)
         {
-            case 0:
-                lock1 = ScoreSingleton.Instance.Dungeon1LockEasy;
-                lock2 = ScoreSingleton.Instance.Dungeon1LockMedium;
-                lock3 = ScoreSingleton.Instance.Dungeon1LockHard;
+            case 1:
+                lock1 = ScoreSingleton.Instance.Stage[StageEnum.D1Easy];
+                lock2 = ScoreSingleton.Instance.Stage[StageEnum.D1Medium];
+                lock3 = ScoreSingleton.Instance.Stage[StageEnum.D1Hard];
                 StatusE.text = ScoreSingleton.Instance.Dungeon1Data[0];
                 BestScoreE.text = ScoreSingleton.Instance.Dungeon1Data[1];
                 TimeE.text = ScoreSingleton.Instance.Dungeon1Data[2];
@@ -77,6 +77,30 @@ public class DungeonMenuScript : MonoBehaviour
 
     public void ChallangeStage(int Difficulty)
     {
+        if (activeDungeon == 1)
+        {
+            if (Difficulty == 0)
+            {
+                ScoreSingleton.Instance.currentStage = StageEnum.D1Easy;
+                ScoreSingleton.Instance.DungeonScaling = 1;
+                ScoreSingleton.Instance.ActiveEnemies = ScoreSingleton.Instance.Dungeon1ActiveEnemiesEasy;
+            }
+            else if (Difficulty == 1)
+            {
+                ScoreSingleton.Instance.currentStage = StageEnum.D1Medium;
+                ScoreSingleton.Instance.DungeonScaling = 1.5f;
+                ScoreSingleton.Instance.ActiveEnemies = ScoreSingleton.Instance.Dungeon1ActiveEnemiesMedium;
+            }
+            else if (Difficulty == 2)
+            {
+                ScoreSingleton.Instance.currentStage = StageEnum.D1Hard;
+                ScoreSingleton.Instance.DungeonScaling = 2;
+                ScoreSingleton.Instance.ActiveEnemies = ScoreSingleton.Instance.Dungeon1ActiveEnemiesHard;
+            }
+        }
+
+        
+
         SceneManager.LoadScene(activeDungeon);
     }
 }

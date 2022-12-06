@@ -112,7 +112,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 3991863127171323254}
-  atk: 10
+  atk: 100
   dmg: 0
   Type: 0
   pSpeed: 1.25

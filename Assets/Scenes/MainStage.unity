@@ -588,7 +588,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70c22ffa89b611b4c82b44e3cf5b594b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DungeonNumber: 0
+  DungeonNumber: 1
   DungeonMenuGameObject: {fileID: 874300165}
 --- !u!1 &162914449
 GameObject:
@@ -4112,6 +4112,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c306cdf41e7c1047a91b8cebd3c5559, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DungeonScaling: 1
+  ActiveEnemies: -1
+  currentStage: 0
   Dungeon1Data:
   - Not Challanged
   - 0
@@ -4122,9 +4125,9 @@ MonoBehaviour:
   - Locked
   - 0
   - 0
-  Dungeon1LockEasy: 0
-  Dungeon1LockMedium: 1
-  Dungeon1LockHard: 1
+  Dungeon1ActiveEnemiesEasy: 12
+  Dungeon1ActiveEnemiesMedium: 12
+  Dungeon1ActiveEnemiesHard: 12
 --- !u!4 &978314696
 Transform:
   m_ObjectHideFlags: 0
@@ -5913,6 +5916,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StartingPosition: {fileID: 1416059499}
+  DungeonEnterMenu: {fileID: 874300165}
   Player: {fileID: 6263274673565654926, guid: aae7b27e45f24844f91255c593963c8e, type: 3}
 --- !u!1 &1520480299
 GameObject:

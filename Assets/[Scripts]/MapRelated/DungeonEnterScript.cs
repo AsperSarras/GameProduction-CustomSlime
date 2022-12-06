@@ -32,16 +32,4 @@ public class DungeonEnterScript : MonoBehaviour
             Cursor.visible = true;
         }
     }
-
-    //private void OnTriggerExit(Collider other)
-    //{
-    //    if (other.tag == "Player")
-    //    {
-    //        DungeonMenuGameObject.SetActive(false);
-    //        Cursor.lockState = CursorLockMode.Locked;
-    //        Cursor.visible = false;
-
-    //    }
-    //}
-
 }

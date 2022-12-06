@@ -168,6 +168,8 @@ public class MainCharacter : MonoBehaviour
                 dmgTaken /= 2;
             }
 
+            if (dmgTaken <= 0) { dmgTaken = 1; }
+
             GameSingleton.Instance.currentHp -= dmgTaken;
 
             if (GameSingleton.Instance.currentHp <= 0)

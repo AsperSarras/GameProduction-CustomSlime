@@ -77,12 +77,33 @@ public class DungeonUiScript : MonoBehaviour
 
         if(bossKilled == true)
         {
+            ScoreSingleton.Instance.StageClear();
 
             if(scoreValue> int.Parse(ScoreSingleton.Instance.Dungeon1Data[1]))
             {
-                ScoreSingleton.Instance.Dungeon1Data[1] = scoreValue.ToString();
-                ScoreSingleton.Instance.Dungeon1Data[2] = min.ToString()+":"+sec.ToString();
-                ScoreSingleton.Instance.Dungeon1Data[0] = "Completed";
+                int indexClearStatus = -1;
+
+                switch (ScoreSingleton.Instance.currentStage)
+                {
+                    case StageEnum.D1Easy:
+                        indexClearStatus = 0;
+                        ScoreSingleton.Instance.Dungeon1Data[indexClearStatus + 3] = "Not Challanged";
+                        break;
+                    case StageEnum.D1Medium:
+                        indexClearStatus = 3;
+                        ScoreSingleton.Instance.Dungeon1Data[indexClearStatus + 3] = "Not Challanged";
+                        break;
+                    case StageEnum.D1Hard:
+                        indexClearStatus = 6;
+                        break;
+                }
+
+                int indexScoreValue = indexClearStatus + 1;
+                int indexTimeValue = indexClearStatus + 2;
+
+                ScoreSingleton.Instance.Dungeon1Data[indexClearStatus] = "Completed";
+                ScoreSingleton.Instance.Dungeon1Data[indexScoreValue] = scoreValue.ToString();
+                ScoreSingleton.Instance.Dungeon1Data[indexTimeValue] = min.ToString()+":"+sec.ToString();
             }
 
             SceneManager.LoadScene(0);

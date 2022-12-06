@@ -5,6 +5,7 @@ using UnityEngine;
 public class MainMenuManagerScript : MonoBehaviour
 {
     public GameObject StartingPosition;
+    public GameObject DungeonEnterMenu;
     public GameObject Player;
 
     private void Awake()
@@ -40,6 +41,8 @@ public class MainMenuManagerScript : MonoBehaviour
             if(Player.transform.position == StartingPosition.transform.position)
             {
                 GameSingleton.Instance.isPlayerInDungeon = false;
+                DungeonEnterMenu.SetActive(false);
+                GameSingleton.Instance.isOnMenu = false;
             }
 
         }

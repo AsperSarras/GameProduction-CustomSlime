@@ -10,7 +10,7 @@ public class EnemyBulletScript : MonoBehaviour
     public Rigidbody rb;
     public GameObject enemy;
 
-    public float atk;
+    //public float atk;
     public float dmg;
     public TypeEnmu Type = TypeEnmu.WATER;
 
@@ -48,17 +48,6 @@ public class EnemyBulletScript : MonoBehaviour
         if(collision.gameObject != enemy)
         {
             Destroy(gameObject);
-            //if(collision.gameObject.tag == "Player")
-            //{
-
-            //    GameSingleton.Instance.currentHp = -dmg;
-            //}
         }
-
-        //if (collision.gameObject.layer == 10)
-        //{
-        //    Destroy(gameObject);
-        //}
-        
     }
 }

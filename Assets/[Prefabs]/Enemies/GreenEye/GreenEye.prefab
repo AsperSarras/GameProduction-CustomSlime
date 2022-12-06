@@ -383,10 +383,16 @@ MonoBehaviour:
   scoreWorth: 15
   CurrentHp: 0
   TotalHp: 20
+  Atk: 5
   Def: 2
   type: 2
   weak: 0
   res: 0
+  DungeonData: {fileID: 0}
+  projectileSpawnPoint: {fileID: 7958522495764780423}
+  HpBar: {fileID: 7401529126509206371}
+  totalHp: {fileID: 2864088977533373831}
+  currentHp: {fileID: 7873236216463946418}
   isBoss: 0
   attackCd2: 0
   onCd2: 1
@@ -395,11 +401,6 @@ MonoBehaviour:
   onCd3: 1
   projectile3: {fileID: 0}
   firstEncounter: 0
-  DungeonData: {fileID: 0}
-  projectileSpawnPoint: {fileID: 7958522495764780423}
-  HpBar: {fileID: 7401529126509206371}
-  totalHp: {fileID: 2864088977533373831}
-  currentHp: {fileID: 7873236216463946418}
 --- !u!114 &5357031916612402621
 MonoBehaviour:
   m_ObjectHideFlags: 0
